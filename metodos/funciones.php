@@ -1,6 +1,6 @@
 <?php
 
-function obtener_encabezados_facturas(){
+function obtener_todos_encabezados_facturas(){
     include('conexion.php');
     $stmt = $conexion->prepare("SELECT * FROM control_despachos");
     $stmt->execute();

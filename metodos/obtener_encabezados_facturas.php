@@ -4,10 +4,10 @@
 
     $query = "";
     $salida = array();
-
+    $query = "SELECT * FROM control_despachos ";
 
     if (isset($_POST["search"]["value"])) {
-        $query .= 'WHERE Fecha LIKE "%' . $_POST["search"]["value"] . '%" ';
+        $query .= 'WHERE fecha_salida LIKE "%' . $_POST["search"]["value"] . '%" ';
     }
 
     if (isset($_POST["order"])) {
@@ -48,14 +48,12 @@
         $sub_array[] = '<button type="button" name="borrar" id="'.$fila["id_control"].'" class="btn btn-danger btn-xs borrar">Borrar</button>';
         $datos[] = $sub_array;
     }
-    
-
 
     $salida = array(
         "draw"               => intval($_POST["draw"]),
         "recordsTotal"       => $filtered_rows,
-        "recordsFiltered"    => obtener_encabezados_facturas(),
+        "recordsFiltered"    => obtener_todos_encabezados_facturas(),
         "data"               => $datos
     );
-
+    console.log($salida);
     echo json_encode($salida);
