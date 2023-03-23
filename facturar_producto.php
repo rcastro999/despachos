@@ -27,13 +27,16 @@
                         <th>Vehiculo</th>
                         <th>Viaje</th>
                         <th>Facturas</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
             </table>
         </article>
 
+
+         <!-- MODAL AGREGA   R FACTURA ENCABEZADO -->
         <article>
-            <!-- MODAL AGREGAR FACTURA ENCABEZADO -->
             <div class="modal fade" id="modalCrearFactura" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -73,7 +76,7 @@
                                     </article>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="hidden" name="id_usuario" id="id_usuario">
+                                    <input type="hidden" name="id_control" id="id_control">
                                     <input type="hidden" name="operacion" id="operacion">             
                                     <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                                 </div>
@@ -118,16 +121,16 @@
             </div>
         </article>
 
-
-
-        <script type="text/javascript">
-            $(document).ready(function({
-                $("#botonCrearFacturaEncabezado").click(function({
-                    $(#formulario)[0].reset();
+    </section>
+    <?php include("./includes/links_footer.php"); ?>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $("#botonCrearFacturaEncabezado").click(function(){
+                    $("#formulario_crearFacturaEncabezado")[0].reset();
                     $("modal-title").text("Crear Encabezado");
                     $("#action").val("Crear");
                     $("#operacion").val("Crear");
-                }));
+                });
 
 
 
@@ -136,7 +139,7 @@
                     "serverSide":true,
                     "order":[],
                     "ajax":{
-                        url: "obtener_encabezados_facturas.php",
+                        url: "./metodos/obtener_encabezados_facturas.php",
                         type: "POST"
                     },
                     "columnsDefs":[
@@ -168,14 +171,8 @@
             });
             
 
-            }));
+            });
+
+
         </script>
-
-
-
-
-
-
-
-    </section>
 <?php require_once("./includes/footer.php"); ?>
