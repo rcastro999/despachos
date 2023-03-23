@@ -1,4 +1,5 @@
 <?php require_once("./includes/header.php"); ?>
+    <?php include("./includes/bd/conexion.php"); ?>
     <section class="container stn_principal">
         <article class="art_titulos_pantallas">
             <h4 class="text-center">Facturar producto a clientes</h4>
