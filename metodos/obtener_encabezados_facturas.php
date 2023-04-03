@@ -1,5 +1,5 @@
 <?php
-    include("./includes/bd/conexion.php");
+    include("../includes/bd/conexion.php");
     include("funciones.php");
 
     $query = "";
@@ -55,5 +55,5 @@
         "recordsFiltered"    => obtener_todos_encabezados_facturas(),
         "data"               => $datos
     );
-    console.log($salida);
+    
     echo json_encode($salida);
