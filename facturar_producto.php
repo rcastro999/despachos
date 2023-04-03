@@ -71,7 +71,7 @@
                                         </article>
                                         <article class="col-3">
                                             <label for="select_vehiculo">Vehiculo: </label>
-                                            <select class="form-select" aria-label="Default select example" name="select_vehiculo" id="select_vehiculos">
+                                            <select class="form-select" aria-label="Default select example" name="select_vehiculo" id="select_vehiculo">
                                                 <option value="0" selected>Elija el vehiculo</option>
                                                 <option value="1" selected>Vehiculo 2</option>
                                             </select>
@@ -180,12 +180,17 @@
                     data:{id_control:id_control},
                     dataType:"json",
                     success:function(data){
+                        console.log(data);
                         $('#modalCrearFactura').modal('show');
                         $('#fecha_factura').val(data.fecha_salida);
                         $('#hora_salida').val(data.hora_salida);
                         $('#hora_entrada').val(data.hora_entrada);
                         $('#select_vehiculo').val(data.id_vehiculo);
                         $('#select_motorista').val(data.id_motorista);
+                        $('.modal-title').text("Editar encabezado de factura");
+                        $('#id_control').val(id_control);
+                        $('#action').val("Editar");
+                        $('#operacion').val("Editar");
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log(textStatus, errorThrown);
@@ -193,6 +198,26 @@
                 })
             });
 
+
+
+
+            //BORRAR REGISTROS
+            $(document).on('click', '.borrar', function(){
+                var id_control = $(this).attr("id");
+                if(confirm("Esta seguro de borrar este registro: " + id_control)){
+                    $.ajax({
+                        url:"./metodos/borrar_encabezado_factura.php",
+                        method:"POST",
+                        data:{id_control:id_control},
+                        success:function(data){
+                            alert(data);
+                            dataTable.ajax.reload();
+                        }
+                    });
+                }else{
+                    return false;
+                }
+            });
 
         }); 
 

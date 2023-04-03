@@ -14,6 +14,5 @@
             $salida["id_vehiculo"] = $fila["id_vehiculo"];
             $salida["id_motorista"] = $fila["id_motorista"];
         }
-
         echo json_encode($salida);
     }
