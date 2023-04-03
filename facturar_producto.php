@@ -21,12 +21,17 @@
                         <th>Fecha</th>
                         <th>Hora Salida</th>
                         <th>Hora Entrada</th>
+                        <th>Cliente</th>
                         <th>Motorista</th>
-                        <th>Auxiliar</th>
-                        <th>Ruta</th>
                         <th>Vehiculo</th>
+                        <th>Producto</th>
+                        <th>Cantidad Producto</th>
+                        <th>Costo unit</th>
+                        <th>Total Factura</th>
                         <th>Viaje</th>
-                        <th>Facturas</th>
+                        <th>Ruta</th>
+                        <th>Numero Factura</th>
+                        <th>Fecha Creacion</th>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>
@@ -70,47 +75,9 @@
                                             </select>
                                         </article>
                                     </article>
-                                    <article class="row">
-                                            <span class="text-center">Agregar facturas enviadas: </span>
-                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalAgregarFacturasDetalle"><i class="bi bi-node-plus"></i> Agregar Facturas</button>
-                                    </article>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="id_control" id="id_control">
-                                    <input type="hidden" name="operacion" id="operacion">             
-                                    <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
-                                </div>
-                            </div>
-                        </form>
-                    </div>     
-                </div>
-            </div>
-        </article>
-
-
-        <article>
-            <!-- MODAL AGREGAR FACTURAS DETALLE -->
-            <div class="modal fade" id="modalAgregarFacturasDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar facturas</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    
-                        <form method="POST" id="formulario_agregar_facturas_asociadas" enctype="multipart/form-data">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                <select class="form-select" multiple aria-label="multiple select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <input type="hidden" name="id_usuario" id="id_usuario">
                                     <input type="hidden" name="operacion" id="operacion">             
                                     <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                                 </div>
@@ -127,7 +94,7 @@
             $(document).ready(function(){
                 $("#botonCrearFacturaEncabezado").click(function(){
                     $("#formulario_crearFacturaEncabezado")[0].reset();
-                    $("modal-title").text("Crear Encabezado");
+                    $(".modal-title").text("Crear Encabezado");
                     $("#action").val("Crear");
                     $("#operacion").val("Crear");
                 });

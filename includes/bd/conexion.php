@@ -7,10 +7,9 @@ $password = ''; // Contraseña
 
 try {
     // Crea la conexión PDO
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    $conexion = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     // Configura PDO para que lance excepciones en caso de errores
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Conexión exitosa";
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     echo "Error al conectar a la base de datos: " . $e->getMessage();
 }
