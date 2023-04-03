@@ -4,7 +4,7 @@
         <article class="art_titulos_pantallas">
             <h4 class="text-center">Facturar producto a clientes</h4>
         </article>
-        <article class="col-2 offset-10">
+        <article class="col-2 offset-10 art-btn-crearEncabezado">
                 <article class="text-center">
                     <button type="buttom" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalCrearFactura" id="botonCrearFacturaEncabezado"><i class="bi bi-plus-circle"></i> Crear</button>
                 </article>
