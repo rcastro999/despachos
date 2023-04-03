@@ -59,19 +59,21 @@
                                             <input type="date" name="fecha_factura" id="fecha_factura" class="form-control">
                                             <label for="hora_salida">Hora Salida: </label>
                                             <input type="time" class="form-control" name="hora_salida" id="hora_salida">
-                                            <label for="hora_entrada">Hora hora_entrada: </label>
+                                            <label for="hora_entrada">Hora entrada: </label>
                                             <input type="time" class="form-control" name="hora_entrada" id="hora_entrada">
                                         </article>
                                         <article class="col-3">
                                             <label for="select_motorista">Motorista: </label>
                                             <select class="form-select" aria-label="Default select example" name="select_motorista" id="select_motorista">
                                                 <option value="0" selected>Elija el motorista 1</option>
+                                                <option value="1" selected>Motorista 2</option>
                                             </select>
                                         </article>
                                         <article class="col-3">
                                             <label for="select_vehiculo">Vehiculo: </label>
                                             <select class="form-select" aria-label="Default select example" name="select_vehiculo" id="select_vehiculos">
                                                 <option value="0" selected>Elija el vehiculo</option>
+                                                <option value="1" selected>Vehiculo 2</option>
                                             </select>
                                         </article>
                                     </article>
@@ -136,10 +138,63 @@
                     }
                 }
             });
+
+            //INSERTAR registros
+
+            $(document).on('submit', '#formulario_crearFacturaEncabezado', function(event){
+                event.preventDefault();
+                var fecha_salida = $('#fecha_factura').val();
+                var hora_salida = $('#hora_salida').val();
+                var hora_entrada = $('#hora_entrada').val();
+                var id_motorista = $('#select_motorista').val();
+                var id_vehiculo = $('#select_vehiculo').val();
+
+                if(fecha_salida != '' && hora_salida != '' && hora_entrada != '' && id_motorista != '' && id_vehiculo != ''){
+                    $.ajax({
+                        url:"./metodos/crear_encabezado_factura.php",
+                        method:"POST",
+                        data:new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success:function(data){
+                            alert(data);
+                            $('#formulario_crearFacturaEncabezado')[0].reset();
+                            $('#modalCrearFactura').modal('hide');
+                            dataTable.ajax.reload();
+                        }
+                    });
+                }else{
+                    alert("Algunos campos son obligatorios");
+                }
             
 
             });
 
+            //EDITAR registros
+
+            $(document).on('click', '.editar', function(){
+                var id_control = $(this).attr("id");
+                $.ajax({
+                    url: "./metodos/obtener_encabezado_factura.php",
+                    method:"POST",
+                    data:{id_control:id_control},
+                    dataType:"json",
+                    success:function(data){
+                        $('#modalCrearFactura').modal('show');
+                        $('#fecha_factura').val(data.fecha_salida);
+                        $('#hora_salida').val(data.hora_salida);
+                        $('#hora_entrada').val(data.hora_entrada);
+                        $('#select_vehiculo').val(data.id_vehiculo);
+                        $('#select_motorista').val(data.id_motorista);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log(textStatus, errorThrown);
+                    }
+                })
+            });
+
+
+        }); 
 
         </script>
 <?php require_once("./includes/footer.php"); ?>
