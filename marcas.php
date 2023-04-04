@@ -1,4 +1,5 @@
 <?php require_once("./includes/header.php"); ?>
+    <?php include("./includes/bd/conexion.php"); ?>
     <section class="container stn_principal">
         <article class="art_titulos_pantallas">
             <h4 class="text-center">Marcas de vehículos</h4>
@@ -17,6 +18,8 @@
                         <th>ID</th>
                         <th>Descripción</th>
                         <th>Fecha Creación</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
             </table>
@@ -61,4 +64,53 @@
 
     </section>
     <?php include("./includes/links_footer.php"); ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           
+            $("#botonCrearMarca").click(function(){
+                $("#formulario_crearMarca")[0].reset();
+                $(".modal-title").text("Crear Marca");
+                $("#action").val("Crear");
+                $("#operacion").val("Crear");
+            });
+
+            var dataTable = $('#tabla_marcas').DataTable({
+                    "processing":true,
+                    "serverSide":true,
+                    "order":[],
+                    "ajax":{
+                        url: "./metodos/obtener_marcas.php",
+                        type: "POST"
+                    },
+                    "columnsDefs":[
+                        {
+                        "targets":[0, 3, 4],
+                        "orderable":false,
+                        },
+                    ],
+                    "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay registros",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+
+        });
+    </script>
 <?php require_once("./includes/footer.php"); ?>

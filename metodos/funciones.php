@@ -7,3 +7,11 @@ function obtener_todos_encabezados_facturas(){
     $resultado = $stmt->fetchAll(); 
     return $stmt->rowCount();
 }
+
+function obtener_todas_marcas(){
+    include('../includes/bd/conexion.php');
+    $stmt =$conexion->prepare("SELECT * FROM catalogomarcas");
+    $stmt->execute();
+    $resultado = $stmt->fecthAll();
+    return $stmt->rowCount();
+}

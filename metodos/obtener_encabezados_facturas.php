@@ -20,7 +20,6 @@
         $query .= 'LIMIT ' . $_POST["start"] . ','. $_POST["length"];
     }
 
-
     $stmt = $conexion->prepare($query);
     $stmt->execute();
     $resultado = $stmt->fetchAll();
