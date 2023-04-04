@@ -15,3 +15,6 @@ article{
 .modal-dialog{
     max-width: 1000px;
 }
+#modalCrearMarcas.modal-dialog{
+    max-width: 500px !important;
+}
