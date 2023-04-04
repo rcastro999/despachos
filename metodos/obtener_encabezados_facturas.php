@@ -36,9 +36,6 @@
         $sub_array[] = $fila["id_cliente"];
         $sub_array[] = $fila["id_motorista"];
         $sub_array[] = $fila["id_vehiculo"];
-        $sub_array[] = $fila["id_producto"];
-        $sub_array[] = $fila["cantidad_producto"];
-        $sub_array[] = $fila["costo_unit"];
         $sub_array[] = $fila["total_factura"];
         $sub_array[] = $fila["numero_viaje"];
         $sub_array[] = $fila["id_ruta"];

@@ -2,11 +2,11 @@
     <?php include("./includes/bd/conexion.php"); ?>
     <section class="container stn_principal">
         <article class="art_titulos_pantallas">
-            <h4 class="text-center">Facturar producto a clientes</h4>
+            <h4 class="text-center">Facturar</h4>
         </article>
         <article class="col-2 offset-10 art-btn-crearEncabezado">
                 <article class="text-center">
-                    <button type="buttom" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalCrearFactura" id="botonCrearFacturaEncabezado"><i class="bi bi-plus-circle"></i> Crear</button>
+                    <button type="buttom" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalCrearFactura" id="botonCrearFacturaEncabezado"><i class="bi bi-plus-circle"></i> Crear Factura</button>
                 </article>
         </article>
 
@@ -23,15 +23,12 @@
                         <th>Hora Entrada</th>
                         <th>Cliente</th>
                         <th>Motorista</th>
-                        <th>Vehiculo</th>
-                        <th>Producto</th>
-                        <th>Cantidad Producto</th>
-                        <th>Costo unit</th>
+                        <th>Vehículo</th>
                         <th>Total Factura</th>
                         <th>Viaje</th>
                         <th>Ruta</th>
                         <th>Numero Factura</th>
-                        <th>Fecha Creacion</th>
+                        <th>Fecha Creación</th>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>
@@ -41,7 +38,7 @@
 
 
          <!-- MODAL AGREGA   R FACTURA ENCABEZADO -->
-        <article>
+        <article class="container">
             <div class="modal fade" id="modalCrearFactura" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -57,10 +54,6 @@
                                         <article class="col-3">
                                             <label for="fecha_factura">Fecha: </label>
                                             <input type="date" name="fecha_factura" id="fecha_factura" class="form-control">
-                                            <label for="hora_salida">Hora Salida: </label>
-                                            <input type="time" class="form-control" name="hora_salida" id="hora_salida">
-                                            <label for="hora_entrada">Hora entrada: </label>
-                                            <input type="time" class="form-control" name="hora_entrada" id="hora_entrada">
                                         </article>
                                         <article class="col-3">
                                             <label for="select_motorista">Motorista: </label>
@@ -74,6 +67,42 @@
                                             <select class="form-select" aria-label="Default select example" name="select_vehiculo" id="select_vehiculo">
                                                 <option value="0" selected>Elija el vehiculo</option>
                                                 <option value="1" selected>Vehiculo 2</option>
+                                            </select>
+                                        </article>
+                                    </article>
+                                    <article class="row">
+                                        <article class="col-3">
+                                            <label for="hora_entrada">Hora entrada: </label>
+                                            <input type="time" class="form-control" name="hora_entrada" id="hora_entrada">
+                                        </article>
+                                        <article class="col-3">
+                                            <label for="hora_salida">Hora Salida: </label>
+                                            <input type="time" class="form-control" name="hora_salida" id="hora_salida">
+                                        </article>
+                                    </article>
+                                    <article class="row">
+                                        <article class="col-3">
+                                            <label for="select_cliente">Cliente: </label>
+                                            <select name="select_cliente" class="form-select" id="select_cliente">
+                                                <option value="0" selected>Seleccione el cliente</option>
+                                                <option value="1">Cliente 1</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-3">
+                                            <label for="select_producto">Producto: </label>
+                                            <select name="select_producto" class="form-select" id="select_producto">
+                                                <option value="0" selected>Seleccione el producto</option>
+                                                <option value="1">Producto 1</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-3">
+                                            <label for="select_facturas">Facturas: </label>
+                                            <select name="select_facturas" class="form-select" multiple aria-label="multiple select example" id="select_facturas">
+                                                <option value="0" selected>Seleccione la(s) facturas</option>
+                                                <option value="fact 1">Factura 1</option>
+                                                <option value="fact 2">Factura 2</option>
+                                                <option value="fact 3">Factura 3</option>
+                                                <option value="fact 4">Factura 4</option>
                                             </select>
                                         </article>
                                     </article>
