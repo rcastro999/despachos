@@ -136,6 +136,28 @@
             });
 
 
+            //EDITAR MARCAS
+            $(document).on('click', '.editar', function(){
+                var id_marca = $(this).attr("id");
+                $.ajax({
+                    url:"./metodos/obtener_encabezado_factura.php",
+                    method:"POST",
+                    data:{id_marca:id_marca},
+                    dataType:"json",
+                    success:function(data){
+                        $('#modalCrearMarcas').modal('show');
+                        $('#descripcion').val(data.descripcion_marca);
+                        $('.modal-title').text("Editar Marca");
+                        $('#id_marca').val(id_marca);
+                        $('#action').val("Editar");
+                        $('#operacion').val("Editar");
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log(textStatus, errorThrown);
+                    }
+                })
+            });
+
 
         });
     </script>
