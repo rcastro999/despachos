@@ -33,7 +33,6 @@
         $sub_array[] = $fila["fecha_salida"];
         $sub_array[] = $fila["hora_salida"];
         $sub_array[] = $fila["hora_entrada"];
-        $sub_array[] = $fila["id_cliente"];
         $sub_array[] = $fila["id_motorista"];
         $sub_array[] = $fila["id_vehiculo"];
         $sub_array[] = $fila["total_factura"];

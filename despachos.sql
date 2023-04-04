@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2023 a las 17:10:42
+-- Tiempo de generación: 04-04-2023 a las 17:13:36
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.31
 
@@ -134,7 +134,6 @@ CREATE TABLE `control_despachos` (
   `fecha_salida` date NOT NULL,
   `hora_salida` time NOT NULL,
   `hora_entrada` time NOT NULL,
-  `id_cliente` int(11) NOT NULL,
   `id_motorista` int(11) NOT NULL,
   `id_vehiculo` int(11) NOT NULL,
   `total_factura` decimal(15,0) NOT NULL,
@@ -148,8 +147,8 @@ CREATE TABLE `control_despachos` (
 -- Volcado de datos para la tabla `control_despachos`
 --
 
-INSERT INTO `control_despachos` (`id_control`, `fecha_salida`, `hora_salida`, `hora_entrada`, `id_cliente`, `id_motorista`, `id_vehiculo`, `total_factura`, `numero_viaje`, `id_ruta`, `numero_factura`, `fecha_creacion`) VALUES
-(1, '2023-04-25', '09:39:00', '11:41:00', 0, 1, 1, '0', '', 0, '', '2023-04-04 08:38:58');
+INSERT INTO `control_despachos` (`id_control`, `fecha_salida`, `hora_salida`, `hora_entrada`, `id_motorista`, `id_vehiculo`, `total_factura`, `numero_viaje`, `id_ruta`, `numero_factura`, `fecha_creacion`) VALUES
+(1, '2023-04-25', '09:39:00', '11:41:00', 1, 1, '0', '', 0, '', '2023-04-04 08:38:58');
 
 --
 -- Índices para tablas volcadas
