@@ -111,6 +111,32 @@
             });
 
 
+            //INSERTAR MARCAS
+            $(document).on('submit', '#formulario_crearMarca', function(event){
+                event.preventDefault();
+                var descripcion = $('#descripcion').val();
+
+                if(descripcion != ''){
+                    $.ajax({
+                        url:"./metodos/crear_marcas.php",
+                        method:"POST",
+                        data:new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success:function(data){
+                            alert(data);
+                            $('#formulario_crearMarca')[0].reset();
+                            $('#modalCrearMarcas').modal('hide');
+                            dataTable.ajax.reload();
+                        }
+                    });
+                }else{
+                    alert("Algunos campos son obligatorios");
+                }
+            });
+
+
+
         });
     </script>
 <?php require_once("./includes/footer.php"); ?>

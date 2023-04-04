@@ -24,7 +24,7 @@
     $resultado = $stmt->fetchAll();
     $datos = array();
     $filtered_rows = $stmt->rowCount();
-
+    
     foreach($resultado as $fila){
         $sub_array = array();
         $sub_array[] = $fila["id_marca"];
@@ -34,7 +34,6 @@
         $sub_array[] = '<button type="button" name="borrar" id="'.$fila["id_marca"].'" class="btn btn-danger btn-xs borrar">Borrar</button>';
         $datos[] = $sub_array;
     }
-
     $salida = array(
         "draw"               => intval($_POST["draw"]),
         "recordsTotal"       => $filtered_rows,
