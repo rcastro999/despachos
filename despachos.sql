@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2023 a las 20:08:55
+-- Tiempo de generación: 04-04-2023 a las 17:10:42
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.31
 
@@ -98,33 +98,6 @@ CREATE TABLE `catalogoperfiles` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `catalogopresentaciones`
---
-
-CREATE TABLE `catalogopresentaciones` (
-  `id_presentacion` int(11) NOT NULL,
-  `descripcion_presentacion` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha_creacion` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `catalogoproductos`
---
-
-CREATE TABLE `catalogoproductos` (
-  `id_producto` int(11) NOT NULL,
-  `descripcion_producto` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
-  `precio_producto` decimal(30,0) NOT NULL,
-  `id_presentacion` int(11) NOT NULL,
-  `imagen_producto` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha_creacion` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `catalogorutas`
 --
 
@@ -164,15 +137,19 @@ CREATE TABLE `control_despachos` (
   `id_cliente` int(11) NOT NULL,
   `id_motorista` int(11) NOT NULL,
   `id_vehiculo` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `cantidad_producto` decimal(15,0) NOT NULL,
-  `costo_unit` decimal(15,0) NOT NULL,
   `total_factura` decimal(15,0) NOT NULL,
   `numero_viaje` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
   `id_ruta` int(11) NOT NULL,
-  `numero_factura` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `numero_factura` varchar(500) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `control_despachos`
+--
+
+INSERT INTO `control_despachos` (`id_control`, `fecha_salida`, `hora_salida`, `hora_entrada`, `id_cliente`, `id_motorista`, `id_vehiculo`, `total_factura`, `numero_viaje`, `id_ruta`, `numero_factura`, `fecha_creacion`) VALUES
+(1, '2023-04-25', '09:39:00', '11:41:00', 0, 1, 1, '0', '', 0, '', '2023-04-04 08:38:58');
 
 --
 -- Índices para tablas volcadas
@@ -209,19 +186,6 @@ ALTER TABLE `catalogomodelos`
 --
 ALTER TABLE `catalogoperfiles`
   ADD PRIMARY KEY (`id_perfil`);
-
---
--- Indices de la tabla `catalogopresentaciones`
---
-ALTER TABLE `catalogopresentaciones`
-  ADD PRIMARY KEY (`id_presentacion`);
-
---
--- Indices de la tabla `catalogoproductos`
---
-ALTER TABLE `catalogoproductos`
-  ADD PRIMARY KEY (`id_producto`),
-  ADD KEY `id_presentacion` (`id_presentacion`);
 
 --
 -- Indices de la tabla `catalogorutas`
@@ -278,18 +242,6 @@ ALTER TABLE `catalogoperfiles`
   MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `catalogopresentaciones`
---
-ALTER TABLE `catalogopresentaciones`
-  MODIFY `id_presentacion` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `catalogoproductos`
---
-ALTER TABLE `catalogoproductos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `catalogorutas`
 --
 ALTER TABLE `catalogorutas`
@@ -305,7 +257,7 @@ ALTER TABLE `catalogovehiculos`
 -- AUTO_INCREMENT de la tabla `control_despachos`
 --
 ALTER TABLE `control_despachos`
-  MODIFY `id_control` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
