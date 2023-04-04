@@ -13,6 +13,9 @@
             $salida["hora_entrada"] = $fila["hora_entrada"];
             $salida["id_vehiculo"] = $fila["id_vehiculo"];
             $salida["id_motorista"] = $fila["id_motorista"];
+            $salida["id_ruta"] = $fila["id_ruta"];
+            $salida["numero_viaje"] = $fila["numero_viaje"];
+            $salida["numero_factura"] = $fila["numero_factura"];
         }
         echo json_encode($salida);
     }

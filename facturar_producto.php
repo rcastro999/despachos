@@ -11,8 +11,6 @@
         </article>
 
 
-
-
         <article class="table-responsive">
             <table id="facturas_encabezados" class="table table-bordered table-striped">
                 <thead>
@@ -57,15 +55,15 @@
                                         <article class="col">
                                             <label for="select_motorista">Motorista: </label>
                                             <select class="form-select" aria-label="Default select example" name="select_motorista" id="select_motorista">
-                                                <option value="0" selected>Elija el motorista 1</option>
-                                                <option value="1" selected>Motorista 2</option>
+                                                <option value="0" selected>Elija el motorista</option>
+                                                <option value="1">Motorista 2</option>
                                             </select>
                                         </article>
                                         <article class="col">
-                                            <label for="select_vehiculo">Vehiculo: </label>
+                                            <label for="select_vehiculo">Vehículo: </label>
                                             <select class="form-select" aria-label="Default select example" name="select_vehiculo" id="select_vehiculo">
                                                 <option value="0" selected>Elija el vehiculo</option>
-                                                <option value="1" selected>Vehiculo 2</option>
+                                                <option value="1">Vehículo 2</option>
                                             </select>
                                         </article>
                                     </article>
@@ -88,12 +86,15 @@
                                             <label for="hora_entrada">Hora entrada: </label>
                                             <input type="time" class="form-control" name="hora_entrada" id="hora_entrada">
                                         </article>
+                                        <article class="col">
+                                            <label for="numero_viaje">Numero viaje:</label>
+                                            <input type="text" name="numero_viaje" id="numero_viaje" class="form-control">
+                                        </article>
                                     </article>
                                     <article class="row">
                                         <article class="col">
                                             <label for="select_facturas">Factura(s) asociada(s): </label>
-                                            <select name="select_facturas" class="form-select" multiple aria-label="multiple select example" id="select_facturas">
-                                                <option value="0" selected>Seleccione la(s) factura(s)</option>
+                                            <select name="select_facturas[]" class="form-select" multiple aria-label="multiple select example" id="select_facturas">
                                                 <option value="fact 1">Factura 1</option>
                                                 <option value="fact 2">Factura 2</option>
                                                 <option value="fact 3">Factura 3</option>
@@ -172,8 +173,11 @@
                 var hora_entrada = $('#hora_entrada').val();
                 var id_motorista = $('#select_motorista').val();
                 var id_vehiculo = $('#select_vehiculo').val();
+                var numero_viaje = $('#numero_viaje').val();
+                var id_ruta = $('#select_ruta').val();
+                var numero_factura = $('#select_facturas').val();
 
-                if(fecha_salida != '' && hora_salida != '' && hora_entrada != '' && id_motorista != '' && id_vehiculo != ''){
+                if(fecha_salida != '' && hora_salida != '' && hora_entrada != '' && id_motorista != '' && id_vehiculo != '' && numero_viaje != '' && id_ruta != '' && numero_factura != ''){
                     $.ajax({
                         url:"./metodos/crear_encabezado_factura.php",
                         method:"POST",
@@ -211,6 +215,16 @@
                         $('#hora_entrada').val(data.hora_entrada);
                         $('#select_vehiculo').val(data.id_vehiculo);
                         $('#select_motorista').val(data.id_motorista);
+                        $('#select_ruta').val(data.id_ruta);
+                        $('#numero_viaje').val(data.numero_viaje);
+                        var facturas = data.numero_factura.split(";");
+                        
+                        $("#select_facturas option").each(function(){
+                            if($.inArray($(this).val(), facturas) !== -1){
+                                $(this).prop("selected", true);
+                            }
+                        });
+                        //$('#select_facturas').val(data.numero_factura);
                         $('.modal-title').text("Editar encabezado de factura");
                         $('#id_control').val(id_control);
                         $('#action').val("Editar");
