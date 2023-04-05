@@ -15,3 +15,12 @@ function obtener_todas_marcas(){
     $resultado = $stmt->fetchAll();
     return $stmt->rowCount();
 }
+
+
+function obtener_todas_modelos(){
+    include('../includes/bd/conexion.php');
+    $stmt =$conexion->prepare("SELECT * FROM catalogomodelos");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    return $stmt->rowCount();
+}

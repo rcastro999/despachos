@@ -3,7 +3,7 @@
     include("funciones.php");
 
     if($_POST["operacion"] == "Crear"){
-        $stmt = $conexion->prepare("INSERT INTO catalogomarcas (descripcion_marca) VALUES(:descripcion)");
+        $stmt = $conexion->prepare("INSERT INTO catalogomodelos(descripcion_modelo) VALUES(:descripcion)");
 
         $resultado = $stmt->execute(
             array(
@@ -16,17 +16,17 @@
         }
     }
 
-
     if($_POST["operacion"] == "Editar"){
-        $stmt = $conexion->prepare("UPDATE catalogomarcas SET descripcion_marca=:descripcion_marca WHERE id_marca=:id_marca");
+        $stmt = $conexion->prepare("UPDATE catalogomodelos SET descripcion_modelo=:descripcion_modelo WHERE id_modelo=:id_modelo");
 
         $resultado = $stmt->execute(
             array(
-                ':descripcion_marca' => $_POST["descripcion"],
-                ':id_marca' => $_POST["id_marca"]
+                ':descripcion_modelo' => $_POST["descripcion"],
+                ':id_modelo' => $_POST["id_modelo"]
             )
         );
 
+        
         if(!empty($resultado)){
             echo 'Registro actualizado con exito!';
         }
