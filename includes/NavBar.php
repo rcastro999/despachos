@@ -29,7 +29,7 @@
                 <li class="dropdown-item"><a href="#" class="nav-link"><i class="bi bi-person-fill"></i> Perfiles</a></li>
                 <li class="dropdown-item"><a href="./modelos.php" class="nav-link">Modelos Vehiculos</a></li>
                 <li class="dropdown-item"><a href="./marcas.php" class="nav-link">Marcas Vehiculos</a></li>
-                <li class="dropdown-item"><a href="#" class="nav-link"><i class="bi bi-sign-turn-right"></i> Rutas</a></li>
+                <li class="dropdown-item"><a href="./rutas.php" class="nav-link"><i class="bi bi-sign-turn-right"></i> Rutas</a></li>
                 <li class="dropdown-item"><a href="#" class="nav-link"><i class="bi bi-cart2"></i> Productos</a></li>
                 <li class="dropdown-item"><a href="#" class="nav-link"><i class="bi bi-people-fill"></i> Clientes</a></li>
             </ul>

@@ -24,3 +24,12 @@ function obtener_todas_modelos(){
     $resultado = $stmt->fetchAll();
     return $stmt->rowCount();
 }
+
+
+function obtener_todas_rutas(){
+    include('../includes/bd/conexion.php');
+    $stmt =$conexion->prepare("SELECT * FROM catalogorutas");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    return $stmt->rowCount();
+}
