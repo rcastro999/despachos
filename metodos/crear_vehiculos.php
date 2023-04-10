@@ -22,14 +22,14 @@
     }
 
     if($_POST["operacion"] == "Editar"){
-        $stmt = $conexion->prepare("UPDATE catalogovehiculos SET (codigo_vehiculo=:codigo_vehiculo, id_marca=:id_marca, id_modelo=:id_modelo, placa=:placa, capacidad_vehiculo=:capacidad_vehiculo) WHERE id_vehiculo= :id_vehiculo");
+        $stmt = $conexion->prepare("UPDATE catalogovehiculos SET codigo_vehiculo=:codigo_vehiculo, id_marca=:id_marca, id_modelo=:id_modelo, placa=:placa, capacidad_vehiculo=:capacidad_vehiculo WHERE id_vehiculo= :id_vehiculo");
         $resultado =$stmt->execute(
             array(
                 ':codigo_vehiculo' => $_POST["codigo_vehiculo"],
                 ':id_marca' => $_POST["select_marca"],
                 ':id_modelo' => $_POST["select_modelo"],
                 ':placa' => $_POST["placa"],
-                ':capacidad_vehiculo' => $_POST["capacidad_vehiculo"],
+                ':capacidad_vehiculo' => $_POST["capacidad"],
                 ':id_vehiculo' => $_POST["id_vehiculo"] 
             )
         );

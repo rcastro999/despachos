@@ -181,7 +181,7 @@
                 var id_vehiculo = $(this).attr("id");
 
                 $.ajax({
-                    url:"./metodos/obtener_vehiculo.php",
+                    url: "./metodos/obtener_vehiculo.php",
                     method:"POST",
                     data:{id_vehiculo:id_vehiculo},
                     dataType:"json",
@@ -192,6 +192,7 @@
                         $('#select_modelo').val(data.id_modelo);
                         $('#placa').val(data.placa);
                         $('#capacidad').val(data.capacidad_vehiculo);
+                        $('.modal-title').text("Editar Vehiculo");
                         $('#id_vehiculo').val(id_vehiculo);
                         $('#action').val("Editar");
                         $('#operacion').val("Editar");
@@ -201,6 +202,28 @@
                     }
                 })
             });
+
+
+            //BORRAR VEHICULOS
+
+            $(document).on('click', '.borrar', function(){
+
+                var id_vehiculo = $(this).attr("id");
+
+                if(confirm("Realmente desea borrar el registro: " + id_vehiculo )){
+                    $.ajax({
+                        url:"./metodos/borrar_vehiculo.php",
+                        method:"POST",
+                        data:{id_vehiculo:id_vehiculo},
+                        success: function(data){
+                            alert(data);
+                            dataTable.ajax.reload();
+                        }
+                    });
+                }else{
+                    return false;
+                }
+            })
 
             
         });

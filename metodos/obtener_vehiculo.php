@@ -3,9 +3,9 @@
     include("funciones.php");
 
     if(isset($_POST["id_vehiculo"])){
+        $salida = array();
         $stmt = $conexion->prepare("SELECT * FROM catalogovehiculos WHERE id_vehiculo = '".$_POST["id_vehiculo"]."' LIMIT 1");
-        $stmt = execute();
-
+        $stmt ->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
             $salida["codigo_vehiculo"] = $fila["codigo_vehiculo"];

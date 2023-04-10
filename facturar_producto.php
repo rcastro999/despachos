@@ -217,7 +217,7 @@
                         $('#select_ruta').val(data.id_ruta);
                         $('#numero_viaje').val(data.numero_viaje);
                         var facturas = data.numero_factura.split(";");
-                        $("#select_facturas").val(facturas);
+                        $('#select_facturas').val(facturas);
                         $('.modal-title').text("Editar encabezado de factura");
                         $('#id_control').val(id_control);
                         $('#action').val("Editar");
