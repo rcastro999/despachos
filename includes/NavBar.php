@@ -24,7 +24,7 @@
                 <i class="bi bi-list-columns"></i> Catalogos
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li class="dropdown-item"><a href="#" class="nav-link"><i class="bi bi-truck"></i> Vehiculos</a></li>
+                <li class="dropdown-item"><a href="./vehiculos.php" class="nav-link"><i class="bi bi-truck"></i> Vehiculos</a></li>
                 <li class="dropdown-item"><a href="#" class="nav-link"><i class="bi bi-people"></i> Colaboradores</a></li>
                 <li class="dropdown-item"><a href="./perfiles.php" class="nav-link"><i class="bi bi-person-fill"></i> Perfiles</a></li>
                 <li class="dropdown-item"><a href="./modelos.php" class="nav-link">Modelos Vehiculos</a></li>

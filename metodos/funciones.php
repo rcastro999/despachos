@@ -42,3 +42,11 @@ function obtener_todos_perfiles(){
     $resultado = $stmt->fetchAll();
     return $stmt->rowCount();
 }
+
+function obtener_todos_vehiculos(){
+    include("../includes/bd/conexion.php");
+    $stmt = $conexion->prepare("SELECT catalogovehiculos.id_vehiculo, catalogovehiculos.codigo_vehiculo, catalogomarcas.descripcion_marca, catalogomodelos.descripcion_modelo, catalogovehiculos.placa, catalogovehiculos.capacidad_vehiculo, catalogovehiculos.fecha_creacion FROM catalogovehiculos INNER JOIN catalogomarcas ON catalogomarcas.id_marca = catalogovehiculos.id_marca INNER JOIN catalogomodelos ON catalogovehiculos.id_modelo = catalogomodelos.id_modelo");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    return $stmt->rowCount();
+}
