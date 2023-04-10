@@ -1,18 +1,18 @@
 <?php require_once("./includes/header.php"); ?>
     <section class="container stn_principal">
+
     <article class="art_titulos_pantallas">
-            <h4 class="text-center">Marcas de vehículos</h4>
+            <h4 class="text-center">Perfiles de colaboradores</h4>
         </article>
         <article class="col-2 offset-10 art-btn-crearEncabezado">
                 <article class="text-center">
-                    <button type="buttom" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalCrearModelo" id="botonCrearModelo"><i class="bi bi-plus-circle"></i> Crear Modelo de Vehiculo</button>
+                    <button type="buttom" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalCrearPerfiles" id="botonCrearPerfiles"><i class="bi bi-plus-circle"></i> Crear Perfil</button>
                 </article>
         </article>
 
-
         <!-- TABLA DE MARCAS -->
         <article class="table-responsive">
-            <table id="tabla_modelos" class="table table-bordered table-striped">
+            <table id="tabla_perfiles" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -28,30 +28,30 @@
 
 
 
-        <!-- MODAL CREAR MARCAS -->
+        <!-- MODAL CREAR PERFILES -->
 
 
         <article class="container">
-            <div class="modal fade" id="modalCrearModelo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalCrearPerfiles" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Crear Modelo</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Perfil</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     
-                        <form method="POST" id="formulario_crearModelo">
+                        <form method="POST" id="formulario_crearPerfil">
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <article class="row">
                                         <article class="col">
-                                            <label for="descripcion">Descripcion Modelo:</label>
+                                            <label for="descripcion">Descripcion Perfil:</label>
                                             <input type="text" name="descripcion" class="form-control" id="descripcion">
                                         </article>
                                     </article>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="hidden" name="id_modelo" id="id_modelo">
+                                    <input type="hidden" name="id_perfil" id="id_perfil">
                                     <input type="hidden" name="operacion" id="operacion">             
                                     <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                                 </div>
@@ -63,26 +63,29 @@
         </article>
 
 
+
+
     </section>
     <?php include("./includes/links_footer.php"); ?>
-
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#botonCrearModelo').click(function(){
-                $("#formulario_crearModelo")[0].reset();
-                $(".modal-title").text("Crear Modelo de Vehiculo");
+           
+
+            $("#botonCrearPerfiles").click(function(){
+                $("#formulario_crearPerfil")[0].reset();
+                $(".modal-title").text("Crear Perfil de Colaborador");
                 $("#action").val("Crear");
                 $("#operacion").val("Crear");
-            })
+            });
 
 
-
-            var dataTable = $('#tabla_modelos').DataTable({
+            //CARGANDO DATATABLES CON REGISTROS EXISTENTES EN LA BD
+            var dataTable = $('#tabla_perfiles').DataTable({
                     "processing":true,
                     "serverSide":true,
                     "order":[],
                     "ajax":{
-                        url: "./metodos/obtener_modelos.php",
+                        url: "./metodos/obtener_perfiles.php",
                         type: "POST"
                     },
                     "columnsDefs":[
@@ -114,68 +117,67 @@
             });
 
 
-            //INSERTAR registros
-
-            $(document).on('submit', '#formulario_crearModelo', function(event){
+            //INSERTAR PERFILES
+            $(document).on('submit', '#formulario_crearPerfil', function(event){
                 event.preventDefault();
+
                 var descripcion = $('#descripcion').val();
 
                 if(descripcion != ''){
-                   $.ajax({
-                        url:"./metodos/crear_modelos.php",
+                    $.ajax({
+                        url:"./metodos/crear_perfiles.php",
                         method:"POST",
-                        data:new FormData(this),
+                        data: new FormData(this),
                         contentType: false,
                         processData: false,
-                        success: function(data){
+                        success:function(data){
                             alert(data);
-                            $('#formulario_crearModelo')[0].reset();
-                            $('#modalCrearModelo').modal('hide');
+                            $('#formulario_crearPerfil')[0].reset();
+                            $('#modalCrearPerfiles').modal('hide');
                             dataTable.ajax.reload();
                         }
-                   });
+                    });
                 }else{
-                    alert("Algunos campos son obligatorios");
+                    alert("Algunos campos son obligadorios");
                 }
             });
 
 
-            //EDITAR MODELOS
-
+            //EDITAR PERFILES
             $(document).on('click', '.editar', function(){
-                var id_modelo = $(this).attr("id");
+                var id_perfil = $(this).attr("id");
+
                 $.ajax({
-                    url:"./metodos/obtener_modelo.php",
+                    url:"./metodos/obtener_perfil.php",
                     method:"POST",
-                    data:{id_modelo:id_modelo},
+                    data:{id_perfil:id_perfil},
                     dataType:"json",
                     success:function(data){
-
-                            $('#modalCrearModelo').modal('show');
-                            $('#descripcion').val(data.descripcion_modelo);
-                            $('.modal-title').text("Editar Modelo");
-                            $('#id_modelo').val(id_modelo);
-                            $('#action').val("Editar");
-                            $("#operacion").val("Editar");
-                        },
-                        error: function(jqXHR, textStatus, errorThrown){
-                            console.log(textStatus, errorThrown);
-                        }
+                        $('#modalCrearPerfiles').modal('show');
+                        $('#descripcion').val(data.descripcion_perfil);
+                        $('.modal-title').text("Editar Perfil de Colaborador");
+                        $('#id_perfil').val(id_perfil);
+                        $('#action').val("Editar");
+                        $('#operacion').val("Editar");
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log(textStatus, errorThrown);
+                    }
                 })
             });
 
 
+            //BORRAR PERFILES
 
-            //BORRAR MODELOS
             $(document).on('click', '.borrar', function(){
-                var id_modelo =$(this).attr("id");
-                
+                var id_perfil = $(this).attr("id");
 
-                if(confirm("Esta seguro de borrar este registro: " + id_modelo)){
+                if(confirm("Esta seguro de borrar el registro: " + id_perfil)){
+
                     $.ajax({
-                        url:"./metodos/borrar_modelo.php",
+                        url:"./metodos/borrar_perfil.php",
                         method:"POST",
-                        data:{id_modelo:id_modelo},
+                        data:{id_perfil:id_perfil},
                         success:function(data){
                             alert(data);
                             dataTable.ajax.reload();
@@ -185,6 +187,7 @@
                     return false;
                 }
             });
+
 
 
         });

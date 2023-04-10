@@ -145,7 +145,6 @@
                     data:{id_marca:id_marca},
                     dataType:"json",
                     success:function(data){
-                        console.log(data);
                         $('#modalCrearMarcas').modal('show');
                         $('#descripcion').val(data.descripcion_marca);
                         $('.modal-title').text("Editar Marca");

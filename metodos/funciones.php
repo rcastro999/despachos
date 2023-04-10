@@ -33,3 +33,12 @@ function obtener_todas_rutas(){
     $resultado = $stmt->fetchAll();
     return $stmt->rowCount();
 }
+
+
+function obtener_todos_perfiles(){
+    include("../includes/bd/conexion.php");
+    $stmt = $conexion->prepare("SELECT * FROM catalogoperfiles");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    return $stmt->rowCount();
+}

@@ -208,7 +208,6 @@
                     data:{id_control:id_control},
                     dataType:"json",
                     success:function(data){
-                        console.log(data);
                         $('#modalCrearFactura').modal('show');
                         $('#fecha_factura').val(data.fecha_salida);
                         $('#hora_salida').val(data.hora_salida);

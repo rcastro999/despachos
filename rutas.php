@@ -159,7 +159,6 @@
                     data:{id_ruta:id_ruta},
                     dataType:"json",
                     success:function(data){
-                        console.log(data);
                         $('#modalCrearRutas').modal('show');
                         $('#descripcion').val(data.descripcion_ruta);
                         $('.modal-title').text("Editar ruta de despacho");
